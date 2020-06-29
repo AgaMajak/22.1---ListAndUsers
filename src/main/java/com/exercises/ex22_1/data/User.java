@@ -1,5 +1,7 @@
 package com.exercises.ex22_1.data;
 
+import java.util.Objects;
+
 public class User {
     private String firstName;
     private String surname;
@@ -26,5 +28,20 @@ public class User {
     @Override
     public String toString() {
         return "Użytkownik: " + firstName + " " + surname + ", wiek: " + age + ";";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(firstName, user.firstName) &&
+                Objects.equals(surname, user.surname) &&
+                Objects.equals(age, user.age);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, surname, age);
     }
 }
